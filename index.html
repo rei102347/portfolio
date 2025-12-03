@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>れいら | ブログ×AIビジネスプロンプター - Portfolio</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --primary-color: #5b0f8b;
+      --secondary-color: #7b2fac;
+      --accent-color: #c9a961;
+      --purple-light: #8f5bb8;
+      --bg-white: #ffffff;
+      --bg-light: #faf9f7;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --text-dark: #2c2c2c;
+      --text-gray: #6c6c6c;
+      --border-light: rgba(91, 15, 139, 0.15);
+    }
+    
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: linear-gradient(135deg, #ffffff 0%, #faf9f7 50%, #f5f3f0 100%);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    
+    /* 背景アニメーション */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(91, 15, 139, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(201, 169, 97, 0.06) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* ヘッダー */
+    header {
+      text-align: center;
+      padding: 80px 20px 40px;
+      position: relative;
+    }
+    
+    .profile-image-wrapper {
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 30px;
+      position: relative;
+      animation: fadeInDown 1s ease;
+    }
+    
+    .profile-image-wrapper::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: linear-gradient(45deg, var(--primary-color), var(--accent-color), var(--secondary-color));
+      border-radius: 50%;
+      animation: rotate 3s linear infinite;
+      z-index: -1;
+    }
+    
+    .profile-image {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--bg-white);
+      background: var(--card-bg);
+      box-shadow: 0 10px 40px rgba(91, 15, 139, 0.15);
+    }
+    
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeInUp 1s ease 0.2s both;
+    }
+    
+    .tagline {
+      font-size: 1.1rem;
+      color: var(--text-gray);
+      max-width: 800px;
+      margin: 0 auto 30px;
+      line-height: 1.8;
+      animation: fadeInUp 1s ease 0.4s both;
+    }
+    
+    /* SNSリンク */
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 40px 0;
+      animation: fadeInUp 1s ease 0.6s both;
+    }
+    
+    .social-link-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .social-link {
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-white);
+      backdrop-filter: blur(10px);
+      border: 2px solid var(--border-light);
+      border-radius: 15px;
+      color: var(--primary-color);
+      font-size: 2rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(91, 15, 139, 0.1);
+    }
+    
+    .social-link-label {
+      color: var(--text-gray);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    
+    .social-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .social-link:hover::before {
+      opacity: 0.3;
+    }
+    
+    .social-link:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 10px 30px rgba(91, 15, 139, 0.3);
+      border-color: var(--primary-color);
+    }
+    
+    .social-link i {
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* セクション */
+    section {
+      margin: 60px 0;
+      animation: fadeInUp 1s ease;
+    }
+    
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+      padding-bottom: 20px;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--primary-color), var(--accent-color), var(--primary-color), transparent);
+    }
+    
+    /* カード */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .card {
+      background: var(--bg-white);
+      backdrop-filter: blur(10px);
+      border: 2px solid var(--border-light);
+      border-radius: 20px;
+      padding: 30px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 5px 25px rgba(91, 15, 139, 0.08);
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(91, 15, 139, 0.05), rgba(201, 169, 97, 0.05));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 60px rgba(91, 15, 139, 0.2);
+      border-color: var(--primary-color);
+    }
+    
+    .card:hover::before {
+      opacity: 1;
+    }
+    
+    .card-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .card-icon {
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      display: block;
+    }
+    
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--text-dark);
+    }
+    
+    .card-description {
+      color: var(--text-gray);
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+    
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .card-link:hover {
+      gap: 15px;
+      color: var(--accent-color);
+    }
+    
+    /* CTAボタン */
+    .cta-button {
+      display: inline-block;
+      padding: 15px 40px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      margin: 10px;
+      box-shadow: 0 8px 25px rgba(91, 15, 139, 0.25);
+    }
+    
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .cta-button:hover::before {
+      left: 100%;
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(91, 15, 139, 0.4);
+    }
+    
+    /* プロフィール・展望セクション */
+    .feature-card {
+      background: var(--bg-white);
+      backdrop-filter: blur(10px);
+      border: 2px solid var(--border-light);
+      border-radius: 20px;
+      padding: 40px;
+      margin: 30px 0;
+      transition: all 0.4s ease;
+      box-shadow: 0 5px 25px rgba(91, 15, 139, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .feature-card:hover {
+      border-color: var(--primary-color);
+      box-shadow: 0 20px 60px rgba(91, 15, 139, 0.2);
+    }
+    
+    .feature-card h3 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: var(--primary-color);
+    }
+    
+    .feature-card p {
+      color: var(--text-gray);
+      line-height: 1.8;
+    }
+    
+    .feature-card-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin-bottom: 25px;
+      box-shadow: 0 8px 30px rgba(91, 15, 139, 0.15);
+    }
+    
+    /* ギャラリー */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    @media (max-width: 900px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .gallery-item {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      aspect-ratio: 1;
+      background: var(--bg-white);
+      border: 2px solid var(--border-light);
+      transition: all 0.4s ease;
+      box-shadow: 0 5px 25px rgba(91, 15, 139, 0.08);
+    }
+    
+    .gallery-item:hover {
+      transform: scale(1.05);
+      border-color: var(--primary-color);
+      box-shadow: 0 15px 40px rgba(91, 15, 139, 0.25);
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .gallery-item-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+    }
+    
+    .gallery-item:hover .gallery-item-overlay {
+      opacity: 1;
+    }
+    
+    .gallery-item-title {
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1.4;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* GPTsリスト */
+    .gpts-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+    
+    .gpts-item {
+      background: var(--bg-white);
+      backdrop-filter: blur(10px);
+      border: 2px solid var(--border-light);
+      border-radius: 15px;
+      padding: 25px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(91, 15, 139, 0.08);
+    }
+    
+    .gpts-item:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary-color);
+      box-shadow: 0 15px 40px rgba(91, 15, 139, 0.2);
+    }
+    
+    .gpts-item h4 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+    
+    .gpts-item p {
+      color: var(--text-gray);
+      font-size: 0.95rem;
+    }
+    
+    /* フッター */
+    footer {
+      text-align: center;
+      padding: 60px 20px;
+      margin-top: 100px;
+      border-top: 2px solid var(--border-light);
+    }
+    
+    footer p {
+      color: var(--text-gray);
+    }
+    
+    /* アニメーション */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    
+    /* レスポンシブ */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .social-links {
+        gap: 20px;
+      }
+      
+      .social-link {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+      }
+      
+      .social-link-label {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- ヘッダー -->
+    <header>
+      <div class="profile-image-wrapper">
+        <img src="profile-image.jpg" alt="れいら プロフィール画像" class="profile-image">
+      </div>
+      <h1>れいら</h1>
+      <p class="tagline">
+        ブログ×AIビジネスプロンプター<br>
+        トレンドブログ×AI活用｜Udemy1作目でベストセラー｜GPTs開発＆制作代行<br>
+        1サイト月間138万PV達成｜100万PVブログ運営中｜生成AIパスポート取得
+      </p>
+      
+      <!-- SNSリンク -->
+      <div class="social-links">
+        <div class="social-link-wrapper">
+          <a href="https://x.com/reira_bloglife" class="social-link" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <span class="social-link-label">X</span>
+        </div>
+        <div class="social-link-wrapper">
+          <a href="https://www.threads.com/@reira_ai_blog?hl=ja" class="social-link" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.704-1.434 0-2.605-.546-3.354-1.617-.75-1.072-.834-2.452-.234-3.953.312-.78.803-1.447 1.462-1.983.663-.54 1.43-.924 2.279-1.143 1.313-.338 2.88-.24 4.658.293.038-.116.075-.235.11-.358.355-1.264.248-2.413-.318-3.417-.564-1.005-1.596-1.714-3.072-2.107-1.279-.342-2.585-.305-3.88.108-1.297.412-2.415 1.172-3.323 2.263-.913 1.096-1.586 2.47-2 4.09l-1.997-.454c.514-2.077 1.397-3.835 2.625-5.223 1.23-1.393 2.774-2.4 4.59-2.993 1.616-.528 3.354-.585 5.165-.17 1.943.445 3.443 1.463 4.458 3.026.873 1.346 1.146 2.92.815 4.681-.023.119-.045.235-.07.348.567.397 1.057.87 1.464 1.414.936 1.254 1.44 2.88 1.5 4.833.054 1.766-.304 3.293-1.063 4.54-.76 1.25-1.885 2.17-3.338 2.732-1.26.486-2.703.73-4.298.73zm-3.018-8.21c-.46 0-.866.078-1.214.233-.565.252-1.027.647-1.373 1.174-.345.526-.476 1.083-.387 1.654.178 1.145 1.158 1.812 2.694 1.833 1.555-.02 2.526-.865 2.927-2.547.2-.842.33-1.988.393-3.416-1.435-.545-2.55-.776-3.04-.776z"/>
+            </svg>
+          </a>
+          <span class="social-link-label">Threads</span>
+        </div>
+        <div class="social-link-wrapper">
+          <a href="https://note.com/reira_ai_blog" class="social-link" target="_blank" rel="noopener">
+            <i class="fas fa-sticky-note"></i>
+          </a>
+          <span class="social-link-label">note</span>
+        </div>
+        <div class="social-link-wrapper">
+          <a href="https://ai.design-bloglife.com/p/LyxIrSGSUOw4?ftid=8D8IQB46KvNQ" class="social-link" target="_blank" rel="noopener">
+            <i class="fas fa-envelope"></i>
+          </a>
+          <span class="social-link-label">mail</span>
+        </div>
+      </div>
+      
+      <!-- メインCTA -->
+      <div style="text-align: center; margin: 40px 0;">
+        <a href="https://ai.design-bloglife.com/p/LyxIrSGSUOw4?ftid=8D8IQB46KvNQ" class="cta-button" target="_blank">
+          <i class="fas fa-gift"></i> 無料プレゼントを受け取る
+        </a>
+      </div>
+    </header>
+    
+    <!-- About -->
+    <section id="about">
+      <div class="feature-card">
+        <img src="profile-section.jpg" alt="プロフィールイメージ" class="feature-card-image">
+        <h3><i class="fas fa-user-circle"></i> プロフィールと理念</h3>
+        <p>
+          「もう、我慢しない人生を。」—— 子育て中でも、忙しくても、「やりたいこと」を諦めない。<br>
+          顔出しなし・SNS疲れなし・一人でコツコツ。ブログ×AI時短術で1日30分、月10万円と「自分の人生」を取り戻すお手伝いをしています。
+        </p>
+        <a href="https://design-bloglife.com/profile/" class="card-link" target="_blank">
+          詳しいプロフィールを見る <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+      
+      <div class="feature-card">
+        <img src="vision-section.jpg" alt="これからの展望イメージ" class="feature-card-image">
+        <h3><i class="fas fa-lightbulb"></i> これからの展望</h3>
+        <p>
+          トレンドブログとAIを掛け合わせ、より多くの方が自分らしい人生を取り戻せるようサポートを続けていきます。
+          GPTs開発、コンテンツ制作、そしてAIマンガ制作にも挑戦中。
+        </p>
+        <a href="https://opposite-reindeer-b40.notion.site/2a177deaba0280e59835d92c0d85219a" class="card-link" target="_blank">
+          展望を詳しく見る <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </section>
+    
+    <!-- コンテンツ一覧 -->
+    <section id="contents">
+      <h2 class="section-title">コンテンツ一覧</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-content">
+            <i class="fas fa-robot card-icon"></i>
+            <h3 class="card-title">トレンド特化GPTsセット《アルカディア》</h3>
+            <p class="card-description">
+              AI×トレンドブログで記事作成を最速化＆収益を加速する、15種類の専用GPTsセット。
+              ネタ選定からキーワード選定、記事構成まで完全サポート。
+            </p>
+            <a href="https://tips.jp/u/designlife/a/blog-gpts/d/dac" class="card-link" target="_blank">
+              詳細を見る <i class="fas fa-external-link-alt"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-content">
+            <i class="fas fa-graduation-cap card-icon"></i>
+            <h3 class="card-title">Udemy講座【95%OFF】</h3>
+            <p class="card-description">
+              トレンドブログのネタとキーワードに特化したUdemy講座。
+              ベストセラー講師による実践的な内容で、初心者でも安心。<br>
+              <strong>クーポンコード：C0D0FC3152FEADA2B1DD</strong>
+            </p>
+            <a href="https://www.udemy.com/course/trend-blog-seo/?couponCode=C0D0FC3152FEADA2B1DD" class="card-link" target="_blank">
+              講座を見る <i class="fas fa-external-link-alt"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-content">
+            <i class="fas fa-envelope-open-text card-icon"></i>
+            <h3 class="card-title">無料メルマガ</h3>
+            <p class="card-description">
+              月収31万円稼いだときのネタとキーワード20選+AIツール2つを無料プレゼント。
+              ブログ×AI活用の最新情報をお届けします。
+            </p>
+            <a href="https://ai.design-bloglife.com/p/LyxIrSGSUOw4?ftid=8D8IQB46KvNQ" class="card-link" target="_blank">
+              メルマガ登録 <i class="fas fa-external-link-alt"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- GPTs成果物 -->
+    <section id="gpts">
+      <h2 class="section-title">GPTs開発実績</h2>
+      
+      <div style="margin: 50px 0;">
+        <h3 style="text-align: center; color: var(--primary-color); font-size: 1.8rem; margin-bottom: 20px;">
+          <i class="fas fa-star"></i> トレンドブログ特化GPTsセット《アルカディア》
+        </h3>
+        <p style="text-align: center; color: var(--text-gray); margin-bottom: 40px; font-size: 1.1rem;">
+          記事作成を最速化＆収益を加速するトレンドブログ特化GPTs15種類セット
+        </p>
+        <div class="gpts-list">
+          <div class="gpts-item">
+            <h4>【トレンドブログ速報】 ネタ＆キーワード発掘GPTs</h4>
+          </div>
+          <div class="gpts-item">
+            <h4>ニュース記事から次の疑問を発掘！GPTs</h4>
+          </div>
+          <div class="gpts-item">
+            <h4>トレンド記事 一気通貫！作成GPTs</h4>
+          </div>
+          <div class="gpts-item">
+            <h4>ブログ記事リライトアシストGPTs</h4>
+          </div>
+          <div class="gpts-item">
+            <h4>アイキャッチ＆見出し下画像メーカーGPTs</h4>
+          </div>
+          <div class="gpts-item">
+            <h4>【Q&Aサイト】一気通貫記事作成GPTs</h4>
+          </div>
+          <div class="gpts-item">
+            <h4>売れる！ベネフィット＆マイクロコピーメーカーGPTs</h4>
+          </div>
+          <div class="gpts-item">
+            <h4>サーチコンソール分析＆改善アドバイザーGPTs</h4>
+          </div>
+          <div class="gpts-item">
+            <h4>上位表示ブログ記事分析GPTs</h4>
+          </div>
+          <div class="gpts-item">
+            <h4>上位表示のための記事品質チェックGPTs</h4>
+          </div>
+          <div class="gpts-item">
+            <h4>アドセンス合格ポイント診断 GPTs</h4>
+          </div>
+          <div class="gpts-item">
+            <h4>記事シェアポスト文メーカーGPTs</h4>
+          </div>
+          <div class="gpts-item">
+            <h4>記事導線まるごと設計GPTs</h4>
+          </div>
+          <div class="gpts-item">
+            <h4>【動画→記事】一気通貫作成！GPTs</h4>
+          </div>
+          <div class="gpts-item">
+            <h4>【アドセンス＆一般記事】一気通貫作成 GPTs</h4>
+          </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+          <a href="https://tips.jp/u/designlife/a/blog-gpts/d/dac" class="cta-button" target="_blank">
+            <i class="fas fa-shopping-cart"></i> 《アルカディア》を購入する
+          </a>
+        </div>
+      </div>
+      
+      <div style="margin: 80px 0;">
+        <h3 style="text-align: center; color: var(--secondary-color); font-size: 1.8rem; margin-bottom: 30px;">
+          <i class="fas fa-tools"></i> その他の作成済みGPTs
+        </h3>
+        <div class="gpts-list">
+          <div class="gpts-item">
+            <h4>検索意図GPTs</h4>
+          </div>
+          <div class="gpts-item">
+            <h4>ポスト文作成GPTs</h4>
+          </div>
+          <div class="gpts-item">
+            <h4>アナリティクスデータ分析＆改善アシストGPTs</h4>
+          </div>
+          <div class="gpts-item">
+            <h4>記事本文作成アシストGPTs</h4>
+          </div>
+          <div class="gpts-item">
+            <h4>【記事タイトル＆見出し】作成＆添削アシストGPTs</h4>
+          </div>
+          <div class="gpts-item">
+            <h4>記事改善とアフィリエイト戦略GPTs</h4>
+          </div>
+          <div class="gpts-item">
+            <h4>ジャンルごとのネタとキーワード抽出GPTs</h4>
+          </div>
+          <div class="gpts-item">
+            <h4>ストーリープラスGPTs</h4>
+          </div>
+          <div class="gpts-item">
+            <h4>SEO対策GPTs</h4>
+          </div>
+        </div>
+        
+        <p style="text-align: center; color: var(--text-gray); margin-top: 50px; font-size: 1.1rem; line-height: 1.8;">
+          などなど100個以上は作成しています。
+        </p>
+        
+        <p style="text-align: center; color: var(--text-gray); margin-top: 30px; font-size: 1.05rem; line-height: 1.8;">
+          その他、転売・Xアフィリ・診断系GPTなど、コンテンツホルダーさんからの依頼を多数納品しています。
+        </p>
+      </div>
+    </section>
+    
+    <!-- AIマンガポートフォリオ -->
+    <section id="ai-manga">
+      <h2 class="section-title">AIマンガ作品集</h2>
+      <p style="text-align: center; color: var(--text-gray); margin-bottom: 40px;">
+        AIを活用したマンガ制作にも挑戦しています。独自の世界観とストーリーをお楽しみください。
+      </p>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <div class="gallery-item-overlay">
+            <p class="gallery-item-title">ChatGPT×Canva</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-item-overlay">
+            <p class="gallery-item-title">Stable Diffusion×seedream4×CLIP STUDIO PAINT EX</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-item-overlay">
+            <p class="gallery-item-title">Nano Banana Pro</p>
+          </div>
+        </div>
+      </div>
+      <p style="text-align: center; margin-top: 30px; color: var(--text-gray);">
+        <i class="fas fa-info-circle"></i> 画像をクリックで拡大表示（今後実装予定）
+      </p>
+    </section>
+    
+    <!-- お問い合わせ -->
+    <section id="contact">
+      <h2 class="section-title">お問い合わせ</h2>
+      <div style="text-align: center;">
+        <p style="color: var(--text-gray); margin-bottom: 30px;">
+          ブログのご質問やGPTs制作代行、その他お仕事のご依頼はこちらからお気軽にどうぞ。
+        </p>
+        <a href="https://design-bloglife.com/contact/" class="cta-button" target="_blank">
+          <i class="fas fa-paper-plane"></i> お問い合わせ
+        </a>
+      </div>
+    </section>
+  </div>
+  
+  <!-- フッター -->
+  <footer>
+    <p>&copy; 2025 れいら | ブログ×AIビジネスプロンプター All Rights Reserved.</p>
+    <p style="margin-top: 10px; font-size: 0.9rem;">
+      <a href="https://x.com/reira_bloglife" style="color: var(--primary-color); text-decoration: none;">X</a> | 
+      <a href="https://www.threads.com/@reira_ai_blog?hl=ja" style="color: var(--primary-color); text-decoration: none;">Threads</a> | 
+      <a href="https://note.com/reira_ai_blog" style="color: var(--primary-color); text-decoration: none;">note</a>
+    </p>
+  </footer>
+  
+  <script>
+    // スムーススクロール
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+    
+    // スクロールアニメーション
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('section').forEach(section => {
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(30px)';
+      section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
