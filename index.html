@@ -8,7 +8,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
   
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -21,21 +21,22 @@
     }
     
     :root {
-      --primary-color: #5b0f8b;
-      --secondary-color: #7b2fac;
-      --accent-color: #c9a961;
-      --purple-light: #8f5bb8;
+      --primary-color: #9079b7;
+      --secondary-color: #e2d9f0;
+      --accent-color: #9079b7;
+      --purple-light: #f4f0fa;
       --bg-white: #ffffff;
-      --bg-light: #faf9f7;
-      --card-bg: rgba(255, 255, 255, 0.95);
+      --bg-light: #f4f0fa;
+      --card-bg: #ffffff;
       --text-dark: #2c2c2c;
       --text-gray: #6c6c6c;
-      --border-light: rgba(91, 15, 139, 0.15);
+      --border-light: rgba(144, 121, 183, 0.25);
     }
     
     body {
       font-family: 'Noto Sans JP', sans-serif;
-      background: linear-gradient(135deg, #ffffff 0%, #faf9f7 50%, #f5f3f0 100%);
+      font-size: 15px;
+      background: linear-gradient(135deg, #ffffff 0%, #f4f0fa 50%, #e2d9f0 100%);
       color: var(--text-dark);
       line-height: 1.6;
       overflow-x: hidden;
@@ -51,8 +52,8 @@
       width: 100%;
       height: 100%;
       background: 
-        radial-gradient(circle at 20% 50%, rgba(91, 15, 139, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(201, 169, 97, 0.06) 0%, transparent 50%);
+        radial-gradient(circle at 20% 50%, rgba(144, 121, 183, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(226, 217, 240, 0.15) 0%, transparent 50%);
       pointer-events: none;
       z-index: -1;
     }
@@ -81,13 +82,12 @@
     .profile-image-wrapper::before {
       content: '';
       position: absolute;
-      top: -10px;
-      left: -10px;
-      right: -10px;
-      bottom: -10px;
-      background: linear-gradient(45deg, var(--primary-color), var(--accent-color), var(--secondary-color));
+      top: -6px;
+      left: -6px;
+      right: -6px;
+      bottom: -6px;
+      background: linear-gradient(135deg, #9079b7, #e2d9f0);
       border-radius: 50%;
-      animation: rotate 3s linear infinite;
       z-index: -1;
     }
     
@@ -102,14 +102,11 @@
     }
     
     h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3rem;
-      font-weight: 600;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
       margin-bottom: 15px;
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--primary-color);
       animation: fadeInUp 1s ease 0.2s both;
     }
     
@@ -154,7 +151,7 @@
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 4px 15px rgba(91, 15, 139, 0.1);
+      box-shadow: 0 4px 15px rgba(144, 121, 183, 0.15);
     }
     
     .social-link-label {
@@ -181,7 +178,7 @@
     
     .social-link:hover {
       transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 10px 30px rgba(91, 15, 139, 0.3);
+      box-shadow: 0 10px 30px rgba(144, 121, 183, 0.35);
       border-color: var(--primary-color);
     }
     
@@ -197,12 +194,14 @@
     }
     
     .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5rem;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
       text-align: center;
       margin-bottom: 50px;
       position: relative;
       padding-bottom: 20px;
+      color: var(--primary-color);
     }
     
     .section-title::after {
@@ -250,7 +249,7 @@
     
     .card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 20px 60px rgba(91, 15, 139, 0.2);
+      box-shadow: 0 20px 60px rgba(144, 121, 183, 0.25);
       border-color: var(--primary-color);
     }
     
@@ -302,17 +301,17 @@
     .cta-button {
       display: inline-block;
       padding: 15px 40px;
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+      background: linear-gradient(135deg, #9079b7, #7a68a6);
       color: #ffffff;
       text-decoration: none;
       border-radius: 50px;
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 1rem;
       transition: all 0.4s ease;
       position: relative;
       overflow: hidden;
       margin: 10px;
-      box-shadow: 0 8px 25px rgba(91, 15, 139, 0.25);
+      box-shadow: 0 8px 25px rgba(144, 121, 183, 0.3);
     }
     
     .cta-button::before {
@@ -332,7 +331,7 @@
     
     .cta-button:hover {
       transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(91, 15, 139, 0.4);
+      box-shadow: 0 15px 40px rgba(144, 121, 183, 0.4);
     }
     
     /* プロフィール・展望セクション */
@@ -518,30 +517,63 @@
     
     /* レスポンシブ */
     @media (max-width: 768px) {
+      body {
+        font-size: 13px;
+      }
+      
       h1 {
-        font-size: 2rem;
+        font-size: 1.6rem;
+      }
+      
+      .tagline {
+        font-size: 0.85rem;
       }
       
       .section-title {
-        font-size: 2rem;
+        font-size: 1.4rem;
       }
       
       .card-grid {
         grid-template-columns: 1fr;
       }
       
+      .card-title {
+        font-size: 1.1rem;
+      }
+      
+      .card-description {
+        font-size: 0.9rem;
+      }
+      
       .social-links {
-        gap: 20px;
+        gap: 15px;
       }
       
       .social-link {
-        width: 60px;
-        height: 60px;
-        font-size: 1.5rem;
+        width: 55px;
+        height: 55px;
+        font-size: 1.3rem;
       }
       
       .social-link-label {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
+      }
+      
+      .feature-card h3 {
+        font-size: 1.3rem;
+      }
+      
+      .feature-card p {
+        font-size: 0.9rem;
+      }
+      
+      .gpts-item h4 {
+        font-size: 0.95rem;
+      }
+      
+      .cta-button {
+        font-size: 0.95rem;
+        padding: 12px 30px;
       }
     }
   </style>
@@ -572,8 +604,8 @@
         </div>
         <div class="social-link-wrapper">
           <a href="https://www.threads.com/@reira_ai_blog?hl=ja" class="social-link" target="_blank" rel="noopener">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.704-1.434 0-2.605-.546-3.354-1.617-.75-1.072-.834-2.452-.234-3.953.312-.78.803-1.447 1.462-1.983.663-.54 1.43-.924 2.279-1.143 1.313-.338 2.88-.24 4.658.293.038-.116.075-.235.11-.358.355-1.264.248-2.413-.318-3.417-.564-1.005-1.596-1.714-3.072-2.107-1.279-.342-2.585-.305-3.88.108-1.297.412-2.415 1.172-3.323 2.263-.913 1.096-1.586 2.47-2 4.09l-1.997-.454c.514-2.077 1.397-3.835 2.625-5.223 1.23-1.393 2.774-2.4 4.59-2.993 1.616-.528 3.354-.585 5.165-.17 1.943.445 3.443 1.463 4.458 3.026.873 1.346 1.146 2.92.815 4.681-.023.119-.045.235-.07.348.567.397 1.057.87 1.464 1.414.936 1.254 1.44 2.88 1.5 4.833.054 1.766-.304 3.293-1.063 4.54-.76 1.25-1.885 2.17-3.338 2.732-1.26.486-2.703.73-4.298.73zm-3.018-8.21c-.46 0-.866.078-1.214.233-.565.252-1.027.647-1.373 1.174-.345.526-.476 1.083-.387 1.654.178 1.145 1.158 1.812 2.694 1.833 1.555-.02 2.526-.865 2.927-2.547.2-.842.33-1.988.393-3.416-1.435-.545-2.55-.776-3.04-.776z"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 192 192" fill="currentColor">
+              <path d="M141.537 88.9883C140.71 88.5919 139.87 88.2104 139.019 87.8451C137.537 60.5382 122.616 44.905 97.5619 44.745C97.4484 44.7443 97.3355 44.7443 97.222 44.7443C82.2364 44.7443 69.7731 51.1409 62.102 62.7807L75.881 72.2328C81.6116 63.5383 90.6052 61.6848 97.2286 61.6848C97.3051 61.6848 97.3819 61.6848 97.4576 61.6855C105.707 61.7381 111.932 64.1366 115.961 68.814C118.893 72.2193 120.854 76.925 121.825 82.8638C114.511 81.6207 106.601 81.2385 98.145 81.7233C74.3247 83.0954 59.0111 96.9879 60.0396 116.292C60.5615 125.084 64.8603 132.968 72.0328 138.304C78.0991 142.814 85.8087 145.203 93.9033 145.203C104.81 145.203 113.888 141.469 120.617 134.145C125.82 128.434 129.305 120.893 131.041 111.66C138.351 115.98 143.443 121.791 145.667 128.868C149.296 140.068 146.621 154.245 133.982 166.787C122.867 177.823 109.119 183.111 92.9089 183.111C74.9288 183.111 60.6286 176.856 50.4669 164.53C41.0314 153.037 36.0529 136.576 36.0529 115.999C36.0529 95.4216 41.0314 78.9611 50.4669 67.4679C60.6286 55.1416 74.9288 48.8873 92.9089 48.8873C110.951 48.8873 125.341 55.1769 135.644 67.5765C140.598 73.5378 144.389 80.7178 147.004 89.0104L163.115 84.0396C159.894 73.4671 154.866 64.3898 148.067 56.9217C135.228 42.6566 117.222 35.0526 92.9089 35.0526C68.5954 35.0526 50.4669 42.6219 37.4007 57.8093C25.8 71.3203 19.8871 91.0277 19.8871 115.999C19.8871 140.97 25.8 160.678 37.4007 174.189C50.4669 189.377 68.5954 196.946 92.9089 196.946C112.602 196.946 129.679 190.158 143.276 176.74C159.837 160.407 164.054 140.141 159.139 125.134C155.441 113.814 147.051 104.282 135.229 97.5583C135.229 97.1446 135.231 96.7316 135.233 96.3185C135.314 93.768 135.396 91.2037 135.396 88.6246C135.396 88.1931 135.396 87.762 135.396 87.3315C137.45 87.8498 139.497 88.4116 141.537 88.9883ZM98.9952 128.259C85.2389 128.259 76.5339 122.248 76.0593 112.632C75.7166 105.688 80.7786 96.5917 98.9952 95.5063C100.791 95.4014 102.547 95.3486 104.265 95.3486C110.549 95.3486 116.438 95.9588 121.822 97.1386C120.201 119.386 108.865 128.259 98.9952 128.259Z"/>
             </svg>
           </a>
           <span class="social-link-label">Threads</span>
