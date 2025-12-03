@@ -23,13 +23,14 @@
     :root {
       --primary-color: #9079b7;
       --secondary-color: #e2d9f0;
-      --accent-color: #9079b7;
+      --accent-gold: #c9a961;
+      --gold-light: #d4b872;
       --purple-light: #f4f0fa;
       --bg-white: #ffffff;
       --bg-light: #f4f0fa;
       --card-bg: #ffffff;
       --text-dark: #2c2c2c;
-      --text-gray: #6c6c6c;
+      --text-gray: #555555;
       --border-light: rgba(144, 121, 183, 0.25);
     }
     
@@ -86,7 +87,7 @@
       left: -6px;
       right: -6px;
       bottom: -6px;
-      background: linear-gradient(135deg, #9079b7, #e2d9f0);
+      background: linear-gradient(135deg, #9079b7, #c9a961, #e2d9f0);
       border-radius: 50%;
       z-index: -1;
     }
@@ -210,9 +211,9 @@
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 100px;
+      width: 120px;
       height: 3px;
-      background: linear-gradient(90deg, transparent, var(--primary-color), var(--accent-color), var(--primary-color), transparent);
+      background: linear-gradient(90deg, transparent, #9079b7, #c9a961, #9079b7, transparent);
     }
     
     /* カード */
@@ -232,7 +233,7 @@
       transition: all 0.4s ease;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 5px 25px rgba(91, 15, 139, 0.08);
+      box-shadow: 0 5px 25px rgba(144, 121, 183, 0.1);
     }
     
     .card::before {
@@ -242,7 +243,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgba(91, 15, 139, 0.05), rgba(201, 169, 97, 0.05));
+      background: linear-gradient(135deg, rgba(144, 121, 183, 0.05), rgba(201, 169, 97, 0.08));
       opacity: 0;
       transition: opacity 0.4s ease;
     }
@@ -267,6 +268,15 @@
       color: var(--primary-color);
       margin-bottom: 20px;
       display: block;
+    }
+    
+    .card-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(144, 121, 183, 0.15);
     }
     
     .card-title {
@@ -301,7 +311,7 @@
     .cta-button {
       display: inline-block;
       padding: 15px 40px;
-      background: linear-gradient(135deg, #9079b7, #7a68a6);
+      background: linear-gradient(135deg, #9079b7, #7a68a6, #c9a961);
       color: #ffffff;
       text-decoration: none;
       border-radius: 50px;
@@ -312,6 +322,7 @@
       overflow: hidden;
       margin: 10px;
       box-shadow: 0 8px 25px rgba(144, 121, 183, 0.3);
+      border: 1px solid rgba(201, 169, 97, 0.3);
     }
     
     .cta-button::before {
@@ -665,7 +676,7 @@
       <div class="card-grid">
         <div class="card">
           <div class="card-content">
-            <i class="fas fa-robot card-icon"></i>
+            <img src="arcadia-image.jpg" alt="アルカディア" class="card-image">
             <h3 class="card-title">トレンド特化GPTsセット《アルカディア》</h3>
             <p class="card-description">
               AI×トレンドブログで記事作成を最速化＆収益を加速する、15種類の専用GPTsセット。
@@ -679,7 +690,7 @@
         
         <div class="card">
           <div class="card-content">
-            <i class="fas fa-graduation-cap card-icon"></i>
+            <img src="udemy-image.jpg" alt="Udemy講座" class="card-image">
             <h3 class="card-title">Udemy講座【95%OFF】</h3>
             <p class="card-description">
               トレンドブログのネタとキーワードに特化したUdemy講座。
@@ -697,7 +708,7 @@
             <i class="fas fa-envelope-open-text card-icon"></i>
             <h3 class="card-title">無料メルマガ</h3>
             <p class="card-description">
-              月収31万円稼いだときのネタとキーワード20選+AIツール2つを無料プレゼント。
+              トレンドブログで月収31万円稼いだときのネタとキーワード20選+AIツール2つを無料プレゼント。
               ブログ×AI活用の最新情報をお届けします。
             </p>
             <a href="https://ai.design-bloglife.com/p/LyxIrSGSUOw4?ftid=8D8IQB46KvNQ" class="card-link" target="_blank">
@@ -775,7 +786,7 @@
       </div>
       
       <div style="margin: 80px 0;">
-        <h3 style="text-align: center; color: var(--secondary-color); font-size: 1.8rem; margin-bottom: 30px;">
+        <h3 style="text-align: center; color: #7a68a6; font-size: 1.8rem; margin-bottom: 30px;">
           <i class="fas fa-tools"></i> その他の作成済みGPTs
         </h3>
         <div class="gpts-list">
@@ -822,28 +833,30 @@
     <section id="ai-manga">
       <h2 class="section-title">AIマンガ作品集</h2>
       <p style="text-align: center; color: var(--text-gray); margin-bottom: 40px;">
-        AIを活用したマンガ制作にも挑戦しています。独自の世界観とストーリーをお楽しみください。
+        AIを活用したマンガ制作にも挑戦しています。
       </p>
       <div class="gallery-grid">
-        <div class="gallery-item">
+        <a href="https://opposite-reindeer-b40.notion.site/AI-2be77deaba028049ac8bfe84a8dcd339" target="_blank" class="gallery-item" style="text-decoration: none;">
           <div class="gallery-item-overlay">
             <p class="gallery-item-title">ChatGPT×Canva</p>
           </div>
-        </div>
-        <div class="gallery-item">
+        </a>
+        <a href="https://opposite-reindeer-b40.notion.site/AI-2be77deaba028049ac8bfe84a8dcd339" target="_blank" class="gallery-item" style="text-decoration: none;">
           <div class="gallery-item-overlay">
             <p class="gallery-item-title">Stable Diffusion×seedream4×CLIP STUDIO PAINT EX</p>
           </div>
-        </div>
-        <div class="gallery-item">
+        </a>
+        <a href="https://opposite-reindeer-b40.notion.site/AI-2be77deaba028049ac8bfe84a8dcd339" target="_blank" class="gallery-item" style="text-decoration: none;">
           <div class="gallery-item-overlay">
             <p class="gallery-item-title">Nano Banana Pro</p>
           </div>
-        </div>
+        </a>
       </div>
-      <p style="text-align: center; margin-top: 30px; color: var(--text-gray);">
-        <i class="fas fa-info-circle"></i> 画像をクリックで拡大表示（今後実装予定）
-      </p>
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="https://opposite-reindeer-b40.notion.site/AI-2be77deaba028049ac8bfe84a8dcd339" class="cta-button" target="_blank">
+          <i class="fas fa-palette"></i> AIマンガ作品を見る
+        </a>
+      </div>
     </section>
     
     <!-- お問い合わせ -->
