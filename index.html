@@ -42,21 +42,158 @@
       line-height: 1.6;
       overflow-x: hidden;
       min-height: 100vh;
+      position: relative;
     }
     
-    /* 背景アニメーション */
+    /* 背景アニメーション - オーロラ風のゆらめき */
     body::before {
       content: '';
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      width: 200%;
+      height: 200%;
       background: 
-        radial-gradient(circle at 20% 50%, rgba(144, 121, 183, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(226, 217, 240, 0.15) 0%, transparent 50%);
+        radial-gradient(ellipse at 20% 30%, rgba(144, 121, 183, 0.15) 0%, transparent 40%),
+        radial-gradient(ellipse at 80% 70%, rgba(201, 169, 97, 0.08) 0%, transparent 35%),
+        radial-gradient(ellipse at 50% 50%, rgba(226, 217, 240, 0.2) 0%, transparent 50%);
       pointer-events: none;
       z-index: -1;
+      animation: auroraMove 20s ease-in-out infinite;
+    }
+    
+    body::after {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: 
+        radial-gradient(ellipse at 70% 20%, rgba(144, 121, 183, 0.1) 0%, transparent 30%),
+        radial-gradient(ellipse at 30% 80%, rgba(201, 169, 97, 0.06) 0%, transparent 30%);
+      pointer-events: none;
+      z-index: -2;
+      animation: auroraMove2 25s ease-in-out infinite;
+    }
+    
+    @keyframes auroraMove {
+      0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      25% {
+        transform: translate(-5%, 5%) rotate(2deg);
+      }
+      50% {
+        transform: translate(5%, -5%) rotate(-2deg);
+      }
+      75% {
+        transform: translate(-3%, -3%) rotate(1deg);
+      }
+    }
+    
+    @keyframes auroraMove2 {
+      0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      33% {
+        transform: translate(5%, 3%) rotate(-1deg);
+      }
+      66% {
+        transform: translate(-3%, 5%) rotate(2deg);
+      }
+    }
+    
+    /* ========================================
+       キラキラ浮遊粒子 - 高級感のあるアニメーション
+       ======================================== */
+    .particles-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    
+    .sparkle-particle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      will-change: transform, opacity;
+    }
+    
+    /* ゴールド粒子 */
+    .sparkle-particle.gold {
+      background: radial-gradient(circle, #ffd700 0%, #c9a961 40%, transparent 70%);
+      box-shadow: 
+        0 0 6px 2px rgba(255, 215, 0, 0.9),
+        0 0 12px 4px rgba(201, 169, 97, 0.6),
+        0 0 20px 6px rgba(201, 169, 97, 0.3);
+    }
+    
+    /* 紫粒子 */
+    .sparkle-particle.purple {
+      background: radial-gradient(circle, #c9b3f5 0%, #9079b7 40%, transparent 70%);
+      box-shadow: 
+        0 0 6px 2px rgba(201, 179, 245, 0.9),
+        0 0 12px 4px rgba(144, 121, 183, 0.6),
+        0 0 20px 6px rgba(144, 121, 183, 0.3);
+    }
+    
+    /* 白い輝き粒子 */
+    .sparkle-particle.white {
+      background: radial-gradient(circle, #ffffff 0%, rgba(255, 255, 255, 0.8) 30%, transparent 70%);
+      box-shadow: 
+        0 0 8px 3px rgba(255, 255, 255, 1),
+        0 0 16px 6px rgba(255, 255, 255, 0.5);
+    }
+    
+    /* 浮遊＋キラキラアニメーション */
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(var(--drift-x, 20px)) scale(0.5);
+        opacity: 0;
+      }
+    }
+    
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: 0.4;
+        transform: scale(0.8);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.3);
+      }
+    }
+    
+    @keyframes sparkleGlow {
+      0%, 100% {
+        filter: brightness(1) blur(0.5px);
+        box-shadow: 
+          0 0 6px 2px rgba(255, 215, 0, 0.9),
+          0 0 12px 4px rgba(201, 169, 97, 0.6);
+      }
+      50% {
+        filter: brightness(1.8) blur(0px);
+        box-shadow: 
+          0 0 10px 4px rgba(255, 215, 0, 1),
+          0 0 20px 8px rgba(201, 169, 97, 0.8),
+          0 0 30px 12px rgba(201, 169, 97, 0.4);
+      }
     }
     
     .container {
@@ -586,10 +723,30 @@
         font-size: 0.95rem;
         padding: 12px 30px;
       }
+      
+      /* モバイルでは粒子を小さく */
+      .sparkle-particle {
+        transform: scale(0.7);
+      }
+    }
+    
+    /* パフォーマンス最適化 - 低スペックデバイス用 */
+    @media (prefers-reduced-motion: reduce) {
+      .sparkle-particle,
+      body::before,
+      body::after {
+        animation: none !important;
+      }
+      .particles-container {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- キラキラ浮遊粒子コンテナ（JavaScriptで動的生成） -->
+  <div class="particles-container" id="particles"></div>
+  
   <div class="container">
     <!-- ヘッダー -->
     <header>
@@ -647,8 +804,8 @@
     <!-- 無料メルマガ -->
     <section id="mail-magazine">
       <div class="feature-card" style="text-align: center;">
-        <i class="fas fa-envelope-open-text" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 20px;"></i>
-        <h3 style="color: var(--primary-color);"><i class="fas fa-gift"></i> 無料メルマガ</h3>
+        <img src="mail-image.jpg" alt="無料メルマガ" class="feature-card-image" style="height: auto; max-height: 400px;">
+        <h3 style="color: var(--primary-color); margin-top: 25px;"><i class="fas fa-gift"></i> 無料メルマガ</h3>
         <p style="margin: 20px 0;">
           トレンドブログで月収31万円稼いだときのネタとキーワード20選+AIツール2つを無料プレゼント。<br>
           ブログ×AI活用の最新情報をお届けします。
@@ -870,7 +1027,93 @@
   </footer>
   
   <script>
+    // ========================================
+    // キラキラ浮遊粒子アニメーション
+    // ========================================
+    (function() {
+      const container = document.getElementById('particles');
+      const particleCount = 35; // 粒子の数
+      const colors = ['gold', 'gold', 'gold', 'purple', 'purple', 'white']; // 色の分布
+      
+      function createParticle() {
+        const particle = document.createElement('div');
+        particle.className = 'sparkle-particle ' + colors[Math.floor(Math.random() * colors.length)];
+        
+        // ランダムなサイズ（3px〜8px）
+        const size = Math.random() * 5 + 3;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        
+        // ランダムな開始位置（横方向）
+        particle.style.left = Math.random() * 100 + '%';
+        
+        // 画面下部からスタート
+        particle.style.bottom = '-20px';
+        
+        // ランダムなドリフト（左右の揺れ）
+        const driftX = (Math.random() - 0.5) * 100;
+        particle.style.setProperty('--drift-x', driftX + 'px');
+        
+        // アニメーション時間（8秒〜15秒）
+        const duration = Math.random() * 7 + 8;
+        
+        // 浮遊アニメーション + キラキラアニメーション
+        particle.style.animation = `
+          floatUp ${duration}s ease-out forwards,
+          twinkle ${Math.random() * 2 + 1}s ease-in-out infinite,
+          sparkleGlow ${Math.random() * 3 + 2}s ease-in-out infinite
+        `;
+        
+        // 遅延をランダムに
+        particle.style.animationDelay = `0s, ${Math.random() * 2}s, ${Math.random() * 2}s`;
+        
+        container.appendChild(particle);
+        
+        // アニメーション終了後に削除して新しい粒子を生成
+        setTimeout(() => {
+          particle.remove();
+          createParticle();
+        }, duration * 1000);
+      }
+      
+      // 初期粒子を時間差で生成（一気に出ないように）
+      for (let i = 0; i < particleCount; i++) {
+        setTimeout(() => {
+          createParticle();
+        }, Math.random() * 5000); // 最初の5秒間でバラバラに生成
+      }
+      
+      // 追加のキラキラ効果：画面全体にランダムに瞬く星
+      function createTwinkleStar() {
+        const star = document.createElement('div');
+        star.className = 'sparkle-particle white';
+        
+        const size = Math.random() * 4 + 2;
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animation = 'twinkle 1.5s ease-in-out forwards';
+        star.style.opacity = '0';
+        
+        container.appendChild(star);
+        
+        setTimeout(() => {
+          star.remove();
+        }, 1500);
+      }
+      
+      // 瞬く星を定期的に生成
+      setInterval(() => {
+        if (Math.random() > 0.3) { // 70%の確率で生成
+          createTwinkleStar();
+        }
+      }, 300);
+    })();
+    
+    // ========================================
     // スムーススクロール
+    // ========================================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -884,7 +1127,9 @@
       });
     });
     
+    // ========================================
     // スクロールアニメーション
+    // ========================================
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
