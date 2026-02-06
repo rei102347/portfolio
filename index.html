@@ -416,6 +416,17 @@
       box-shadow: 0 4px 15px rgba(144, 121, 183, 0.15);
     }
     
+    /* 画像を見切れずに全体表示するカード画像 */
+    .card-image-full {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(144, 121, 183, 0.15);
+      max-height: 300px;
+    }
+    
     .card-title {
       font-size: 1.5rem;
       font-weight: 600;
@@ -849,7 +860,21 @@
       <div class="card-grid">
         <div class="card">
           <div class="card-content">
-            <img src="arcadia-image.jpg" alt="アルカディア" class="card-image">
+            <img src="kindle-image.png" alt="Kindle本" class="card-image-full">
+            <h3 class="card-title">【トレンド×特化ブログ】<br>ネタ切れゼロへ！記事ネタとキーワード選定バイブル</h3>
+            <p class="card-description">
+              「今日、何を書けばいいんだろう……」ネタ探しだけで一日が終わっていませんか？<br>
+              本書は、トレンドブログで最短で結果を出すために不可欠な「ネタ選定」と「キーワード選定」に特化した超実践的な教科書です。
+            </p>
+            <a href="https://x.gd/qI3Nv" class="card-link" target="_blank">
+              Amazonで見る <i class="fas fa-external-link-alt"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-content">
+            <img src="arcadia-image.jpg" alt="アルカディア" class="card-image-full">
             <h3 class="card-title">トレンドブログ特化GPTsセット<br>《アルカディア》</h3>
             <p class="card-description">
               AI×トレンドブログで記事作成を最速化＆収益を加速する、15種類の専用GPTsセット。
@@ -863,8 +888,8 @@
         
         <div class="card">
           <div class="card-content">
-            <img src="udemy-image.jpg" alt="Udemy講座" class="card-image">
-            <h3 class="card-title">Udemy講座【95%OFF】</h3>
+            <img src="udemy-image.jpg" alt="Udemy講座" class="card-image-full">
+            <h3 class="card-title">トレンドブログのネタとキーワードに特化したUdemy講座</h3>
             <p class="card-description">
               トレンドブログのネタとキーワードに特化したUdemy講座。
               ベストセラー講師による実践的な内容で、初心者でも安心。<br>
@@ -946,7 +971,7 @@
       
       <div style="margin: 80px 0;">
         <h3 style="text-align: center; color: #7a68a6; font-size: 1.8rem; margin-bottom: 30px;">
-          <i class="fas fa-tools"></i> その他の作成済みGPTs
+          <i class="fas fa-tools"></i> その他の作成済みGPTs＆Gem
         </h3>
         <div class="gpts-list">
           <div class="gpts-item">
@@ -978,6 +1003,9 @@
           </div>
           <div class="gpts-item">
             <h4>アメブロライターGPTs</h4>
+          </div>
+          <div class="gpts-item">
+            <h4>記事丸ごと添削Gem</h4>
           </div>
         </div>
         
@@ -1015,6 +1043,9 @@
         </div>
         <div class="gpts-item">
           <h4>Webサイト</h4>
+        </div>
+        <div class="gpts-item">
+          <h4>パスワード管理ツール「password-manager」</h4>
         </div>
       </div>
       <p style="text-align: center; color: var(--text-gray); font-size: 1.05rem; line-height: 1.8;">
